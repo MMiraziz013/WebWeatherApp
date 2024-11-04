@@ -6,7 +6,7 @@
     z-index: 1; /* Stay on top */
     top: 0; /* Stay at the top */
     left: 0;
-    background-color: rgba(254, 247, 255, 1); /* Black */
+    background-color: rgba(208, 188, 255, 1); /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     padding-top: 20px;
     margin-top: 58px;
@@ -20,7 +20,7 @@
         text-decoration: none;
         font-size: 25px;
         font-family: 'Trebuchet MS';
-        color: #818181;
+        color: black;
         display: block;
     }
 
@@ -51,23 +51,34 @@
     border-color: red;
     border-style: solid;
     border-radius: 15px;
-    height: 500px;
     width: 75vw;
     background-color: white;
 }
 
-    .WeatherBox td {
-        padding-left: 15px;
-        padding-right: 15px;
-    }
+.WeatherBox td {
+    padding-left: 15px;
+    padding-right: 15px;
+}
 
 .mainWeather {
-    background-image: url(../media/clouds-2117439.jpg);
+    background-image: url(../media/sunny.jpg);
     background-size: cover;
     background-position: center;
     border-radius: 15px;
-    padding-left: 25px;
+    height: 50%;
+    overflow: hidden;
+}
+
+.shadow {
+    width: 100%;
     height: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0) 55%);
+    /* Darkens the bottom part; adjust 50% to control how much area is covered */
+}
+.content {
+    color: white;
+    padding: 20px;
+    z-index: 1; /* Ensures the text and buttons appear above the overlay */
 }
 
 @media screen and (max-width: 1600px) {
@@ -75,12 +86,18 @@
         border-color: red;
         border-style: solid;
         border-radius: 15px;
-        height: 500px;
         width: 50vw;
-        margin-left: 18vw;
+        margin-left: 20vw;
     }
 }
 
 .mainWeather h1 {
     padding-top: 200px;
+}
+
+.mainButton {
+    margin-bottom: 15px;
+    border-radius: 5px;
+    border: none;
+    background-color: rgba(247, 242, 250, 1);
 }
