@@ -1,0 +1,32 @@
+﻿@model WebWeatherApp.Models.Weather
+
+@{
+    ViewData["Title"] = "Today's Weather";
+}
+
+<link rel="stylesheet" href="~/css/main.css" />
+
+<div class="sidenav">
+    <a href="#">Change Location</a>
+    <a href="#">Tomorrow</a>
+    <a href="#">Week</a>
+    <a href="#">Celcius</a>
+</div>
+
+<table class="WeatherBox">  
+    <tbody>
+        <tr>
+            <td>
+                <div class="mainWeather">
+                    <h1>+17</h1>
+                    <h5>Sunny</h5>
+                    <button class="mainButton">See Hourly</button>
+                </div>
+            </td>
+        </tr>
+        <tr>
+            <td>
+            </td>
+        </tr>
+    </tbody>
+</table>
