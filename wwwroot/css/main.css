@@ -23,6 +23,9 @@
         color: black;
         display: block;
     }
+.sideBarOption:hover {
+    background-color: rgba(150, 188, 255, 1)
+}
 
         /* When you mouse over the navigation links, change their color */
         .sidenav a:hover {
