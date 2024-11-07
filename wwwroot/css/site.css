@@ -19,5 +19,9 @@ html {
 
 body {
   margin-bottom: 60px;
-  background-color:ghostwhite;
+  background-color:lightpink;
+}
+
+footer {
+    background-color:white;
 }
