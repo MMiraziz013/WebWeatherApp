@@ -60,9 +60,13 @@
     background-color: white;
 }
 
-.WeatherBox td {
-    padding-left: 15px;
-    padding-right: 15px;
+    .WeatherBox td {
+        padding-left: 15px;
+        padding-right: 15px;
+        background-color: white; /*#f9f9f9;*/
+    }
+.WeatherBox tr {
+        
 }
 
 .mainWeather {
@@ -115,12 +119,15 @@
     display: flex;
     align-items: center;
     /*border: 1px solid #ddd;*/
-    border-radius: 8px;
 /*    margin-bottom: 10px;*/
-    background-color: white; /*#f9f9f9;*/
-    border-radius:5px;
-    border:1px, solid;
-    border-color:lightgray; 
+    /*border: 1px, solid, black;
+    border-radius: 15px;*/
+}
+
+.weatherContent {
+    border-radius: 5px;
+    border: 1px, solid;
+    border-color: lightgray;
 }
 
 /* Image container */
