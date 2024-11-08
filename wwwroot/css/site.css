@@ -25,3 +25,19 @@ body {
 footer {
     background-color:white;
 }
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.content-wrapper {
+    display: flex;
+    flex: 1; /* Takes remaining space between navbar and footer */
+}
+
+.container-fluid {
+    padding-left:0 !important;
+    padding-right:0;
+}
