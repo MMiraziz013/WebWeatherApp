@@ -13,6 +13,13 @@
     </div>
 </div>
 
+<!-- Location input form -->
+<form asp-action="GetWeather" method="post">
+    <label for="location">Enter Location:</label>
+    <input type="text" id="location" name="location" required />
+    <button type="submit">Get Weather</button>
+</form>
+
 <table class="WeatherBox">  
     <tbody>
         <tr>
@@ -20,8 +27,8 @@
                 <div class="mainWeather">
                     <div class="shadow">
                         <div class="content">
-                            <h1>+17 <img src="https://cdn.weatherapi.com/weather/64x64/day/113.png" alt="Cloudy Weather" class="mainIcon" /></h1>
-                            <h5 style="color:white">Today's weather: Sunny </h5>
+                            <h1>@Model.Temperature <img src="https:@Model.Icon" alt="Cloudy Weather" class="mainIcon" /></h1>
+                            <h5 style="color:white">Today's weather: @Model.Condition </h5>
                             <button class="mainButton">See Hourly</button>
                         </div>
                     </div>
@@ -33,13 +40,13 @@
                 <div class="list-item">
                     <div class="icon"><img src="~/media/secondWindIcon.png" alt="Wind Icon" /></div>
                     <div class="content">
-                        <p class="title">Wind</p>
-                        <p class="subtitle">WNW</p>
+                        <p class="title">Wind Direction</p>
+                        <p class="subtitle">@Model.WindDirection</p>
                     </div>
                     <div class="icon"><img src="~/media/humidityIcon.png" alt="Humidity Icon" /></div>
                     <div class="content">
                         <p class="title">Humidity</p>
-                        <p class="subtitle">61%</p>
+                        <p class="subtitle">@Model.Humidity</p>
                     </div>
                 </div>
             </td>
@@ -49,8 +56,8 @@
                 <div class="list-item">
                     <div class="icon"><img src="~/media/secondWindIcon.png" alt="Wind Icon" /></div>
                     <div class="content">
-                        <p class="title">Wind</p>
-                        <p class="subtitle">WNW</p>
+                        <p class="title">Wind Speed</p>
+                        <p class="subtitle">Nothing</p>
                     </div>
                     <div class="icon"><img src="~/media/humidityIcon.png" alt="Humidity Icon" /></div>
                     <div class="content">
@@ -66,12 +73,12 @@
                     <div class="icon"><img src="~/media/secondWindIcon.png" alt="Wind Icon" /></div>
                     <div class="content">
                         <p class="title">Wind</p>
-                        <p class="subtitle">WNW</p>
+                        <p class="subtitle">Need to fill</p>
                     </div>
                     <div class="icon"><img src="~/media/humidityIcon.png" alt="Humidity Icon" /></div>
                     <div class="content">
                         <p class="title">Humidity</p>
-                        <p class="subtitle">61%</p>
+                        <p class="subtitle">Need to fill</p>
                     </div>
                 </div>
             </td>

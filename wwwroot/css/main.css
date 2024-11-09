@@ -14,7 +14,6 @@
     overflow-x: hidden; /* Disable horizontal scroll */
     border-radius: 5px;
 }
-
     /* The navigation menu links */
     .sidenav a {
         text-align: center;
@@ -40,7 +39,6 @@
     flex-direction: column; /* Stack links vertically */
     gap: 15px; /* Space between links */
 }
-
 /* Style page content */
 .main {
     margin-left: 160px; /* Same as the width of the sidebar */
