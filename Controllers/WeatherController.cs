@@ -44,12 +44,12 @@ namespace WebWeatherApp.Controllers
             try
             {
                 var weather = await _weatherService.GetWeatherAsync(location);
-                return View("Index", weather); // Pass the fetched weather data to the view
+                return View("Index", weather); // Pass the updated weather data, including location
             }
             catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "Could not retrieve weather data. Please try again.");
-                return View("Index", new Weather());
+                return View("Index");
             }
         }
     }

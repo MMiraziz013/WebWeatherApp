@@ -4,7 +4,7 @@
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    width: 170px; /* Width of the sidebar */
+    width: 195px !important; /* Width of the sidebar */
     position: fixed;
     top: 56px; /* Height of the navbar */
     bottom: 0; /* Sticks to the bottom */
@@ -39,6 +39,12 @@
     flex-direction: column; /* Stack links vertically */
     gap: 15px; /* Space between links */
 }
+
+.locationForm {
+    text-align:center;
+}
+
+
 /* Style page content */
 .main {
     margin-left: 160px; /* Same as the width of the sidebar */

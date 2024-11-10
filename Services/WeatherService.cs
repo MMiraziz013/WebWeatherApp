@@ -47,6 +47,7 @@ namespace WebWeatherApp.Services
                         Humidity = $"{weatherData.Current.Humidity}%",
                         WindDirection = weatherData.Current.WindDir,
                         Visibility = $"{weatherData.Current.Visibility} km",
+                        Location = weatherData.Location.Name,
                     };
                     return weather;
                 }

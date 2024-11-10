@@ -6,19 +6,24 @@
 
 <div class="sidenav">
     <div class="sidenavLinks">
-        <a href="#">Change Location</a>
-        <a href="#">Tomorrow</a>
-        <a href="#">Week</a>
-        <a href="#">Celcius</a>
+        <div class="locationForm">
+            <form asp-action="GetWeather" method="post">
+                <label class="form-label mt-4">Current Location</label>
+                <div class="form-floating mb-3">
+                    <!-- The placeholder is dynamically set based on @Model.Location -->
+                    <input type="text" class="form-control" name="location" required id="location" placeholder="@Model.Location">
+                    <label for="location">@Model.Location</label>
+                </div>
+            </form>
+        </div>
+        <a href="#" class="btn btn-primary">Tomorrow</a>
+        <a href="#" class="btn btn-primary">Week</a>
+        <a href="#" class="btn btn-primary">Celcius</a>
     </div>
 </div>
 
 <!-- Location input form -->
-<form asp-action="GetWeather" method="post">
-    <label for="location">Enter Location:</label>
-    <input type="text" id="location" name="location" required />
-    <button type="submit">Get Weather</button>
-</form>
+
 
 <table class="WeatherBox">  
     <tbody>
@@ -29,7 +34,7 @@
                         <div class="content">
                             <h1>@Model.Temperature<img src="https:@Model.Icon" class="mainIcon" /></h1>
                             <h5 style="color:white">Today's weather: @Model.Condition </h5>
-                            <button class="mainButton">See Hourly</button>
+                            <h5 style="color:white">@Model.Location</h5>
                         </div>
                     </div>
                 </div>

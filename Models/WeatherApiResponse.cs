@@ -5,6 +5,8 @@ namespace WebWeatherApp.Models
     public class WeatherApiResponse
     {
         public CurrentWeather Current {  get; set; }
+
+        public Location Location { get; set; }
     }
 
     public class CurrentWeather
@@ -14,6 +16,7 @@ namespace WebWeatherApp.Models
 
         [JsonPropertyName("wind_kph")]
         public double WindKph { get; set; }
+
         [JsonPropertyName("humidity")]
         public int Humidity { get; set; }
 
@@ -30,5 +33,10 @@ namespace WebWeatherApp.Models
     {
         public string Text { get; set; }
         public string Icon { get; set; }
+    }
+
+    public class Location
+    {
+        public string Name { get; set; }
     }
 }
