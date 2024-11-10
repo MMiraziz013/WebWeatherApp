@@ -53,7 +53,7 @@
 }
 
 .WeatherBox {
-    margin-top: 100px;
+    margin-top: 50px;
     margin-left: auto;
     margin-right: auto;
     border-radius: 15px;
@@ -100,7 +100,7 @@
     margin-bottom: 0px;
 }
 
-@media screen and (max-width: 1600px) {
+@media screen and (max-width: 1550px) {
     .WeatherBox {
         margin-top: 0px;
         margin-left: auto;
@@ -135,6 +135,7 @@
 .list-item {
     display: flex;
     align-items: center;
+    margin-bottom: 10px;
     /*border: 1px solid #ddd;*/
 /*    margin-bottom: 10px;*/
     /*border: 1px, solid, black;
@@ -175,6 +176,7 @@
 /* Content container for text */
 .content {
     flex-grow: 1;
+    width:35%;
 }
 
 /* Title */
@@ -187,7 +189,7 @@
 
 /* Subtitle */
 .subtitle {
-    font-size: 14px;
+    font-size: 20px;
     color: black;
     margin: 5px 0;
 }

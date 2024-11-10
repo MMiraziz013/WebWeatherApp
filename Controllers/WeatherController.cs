@@ -20,10 +20,13 @@ namespace WebWeatherApp.Controllers
             var emptyWeather = new Weather
             {
                 Temperature = string.Empty,
+                Icon = string.Empty,
                 Condition = string.Empty,
                 WindSpeed = string.Empty,
                 Humidity = string.Empty,
-                WindDirection = string.Empty
+                WindDirection = string.Empty,
+                Location = string.Empty,
+                Visibility = string.Empty,
             };
 
             return View(emptyWeather);
@@ -43,10 +46,10 @@ namespace WebWeatherApp.Controllers
                 var weather = await _weatherService.GetWeatherAsync(location);
                 return View("Index", weather); // Pass the fetched weather data to the view
             }
-            catch (Exception ex)
+            catch (Exception)
             {
                 ModelState.AddModelError(string.Empty, "Could not retrieve weather data. Please try again.");
-                return View("Index");
+                return View("Index", new Weather());
             }
         }
     }
