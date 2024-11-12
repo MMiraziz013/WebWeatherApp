@@ -25,7 +25,7 @@ namespace WebWeatherApp.Controllers
                 WindSpeed = string.Empty,
                 Humidity = string.Empty,
                 WindDirection = string.Empty,
-                Location = string.Empty,
+                Location = "Unknown",
                 Visibility = string.Empty,
             };
 

@@ -4,9 +4,8 @@ namespace WebWeatherApp.Models
 {
     public class WeatherApiResponse
     {
-        public CurrentWeather Current {  get; set; }
-
         public Location Location { get; set; }
+        public CurrentWeather Current {  get; set; }
     }
 
     public class CurrentWeather
