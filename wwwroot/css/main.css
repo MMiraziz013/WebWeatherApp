@@ -40,8 +40,45 @@
     gap: 15px; /* Space between links */
 }
 
+.rightSidenav {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 195px !important; /* Width of the sidebar */
+    position: fixed;
+    right:0;
+    top: 56px; /* Height of the navbar */
+    bottom: 0; /* Sticks to the bottom */
+    height: calc(100vh - 56px - 50px); /* Adjust height minus navbar and footer */
+    overflow-y: auto;
+    background-color: rgba(26, 188, 156, 1); /* Black */
+    overflow-x: hidden; /* Disable horizontal scroll */
+    border-radius: 5px;
+}
+
+.listHourly {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.hourlyIcon {
+    width: 45px !important;
+    height: 45px !important;
+    background-color: whitesmoke;
+    border-radius: 8px;
+    margin-right: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    color: white; /*#555*/
+    object-fit:fill;
+}
+
 .locationForm {
-    text-align:center;
+    text-align: center;
 }
 
 
@@ -141,7 +178,7 @@
 .list-item {
     display: flex;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
     /*border: 1px solid #ddd;*/
 /*    margin-bottom: 10px;*/
     /*border: 1px, solid, black;
