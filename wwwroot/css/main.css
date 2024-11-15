@@ -57,6 +57,25 @@
     border-radius: 5px;
 }
 
+.scrollableTableContainer {
+    flex: 1; /* Allows the container to expand and fill available space */
+    overflow-y: auto; /* Enables vertical scrolling */
+    max-height: calc(100vh - 56px - 50px); /* Limits the height to fit within the sidebar */
+    padding-top: 10px; /* Optional: Adds padding for better spacing */
+    padding-bottom:10px;
+    margin-left:auto;
+    margin-right:auto;
+}
+
+    .scrollableTableContainer::-webkit-scrollbar {
+        width: 8px;
+    }
+
+    .scrollableTableContainer::-webkit-scrollbar-thumb {
+        background-color: rgba(0, 0, 0, 0.2);
+        border-radius: 10px;
+    }
+
 .hourlyBox {
     margin-left: auto;
     margin-right: auto;
@@ -66,14 +85,21 @@
 
 .listHourly {
     display: flex;
+    width:95%;
+    margin-left:auto;
+    margin-right:auto;
     align-items: center;
     margin-bottom: 10px;
+    border: 1px, solid !important;
+    border-color: blue !important;
+    border-radius:5px;
+    background-color:white;
+    /*border: 1px, solid;*/
 }
 
 .hourlyIcon img {
-    width: 80px; /* Make the image fit the width of its parent */
-    height: 80px; /* Make the image fit the height of its parent */
-    background-color: whitesmoke;
+    width: 80px;
+    height: 80px;
     border-radius: 8px;
     margin-right: 15px;
     display: flex;
@@ -83,6 +109,8 @@
     color: white; /*#555*/
     object-fit: cover; /* Ensures the image scales without distortion */
     border-radius: 10px;
+    border:1px, solid;
+    border-color: lightgray;
 }
 
 .hourlyContent {
@@ -183,7 +211,7 @@
         border-radius: 5px;
     }
     .mainWeather h1 {
-        padding-top: 100px;
+        padding-top: 70px;
     }
 }
 
