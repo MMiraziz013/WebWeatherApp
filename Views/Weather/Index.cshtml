@@ -23,24 +23,31 @@
 </div>
 
 <div class="rightSidenav">
-    <div class="listHourly">
-        <div class="hourlyIcon">
-            @* <img src="~/media/windspeedIcon.png" alt="hourly icon" /> *@
-        </div>
-        <div class="content">
-            <p class="title">Time</p>
-            <p class="subtitle">Temp. and cond.</p>
-        </div>
-    </div> 
-    <div class="listHourly">
-        <div class="hourlyIcon">
-            @* <img src="~/media/windspeedIcon.png" alt="hourly icon" /> *@
-        </div>
-        <div class="content">
-            <p class="title">Time</p>
-            <p class="subtitle">Temp. and cond.</p>
-        </div>
-    </div>
+    <table class="hourlyBox">
+        <tbody>
+            <tr>
+                <td style="border-top-left-radius:15px; border-top-right-radius:15px">
+                    <div class="listHourly">
+                        <div class="hourlyIcon">
+                            <img src="~/media/windspeedIcon.png" alt="hourly icon" />
+                        </div>
+                        <div class="hourlyContent">
+                            <p class="title">Time</p>
+                            <p class="hourlySubtitle">Temp</p>
+                        </div>
+                    </div>
+                    <div class="listHourly">
+                        <div class="hourlyIcon">
+                            @* <img src="~/media/windspeedIcon.png" alt="hourly icon" /> *@
+                        </div>
+                        <div class="hourlyContent">
+                            <p class="title">Time</p>
+                            <p class="hourlySubtitle">Temp</p>
+                        </div>
+                    </div>
+                </td>
+            </tr>
+    </table>
 </div>
 
 <table class="WeatherBox">
