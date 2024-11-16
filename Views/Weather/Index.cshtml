@@ -26,137 +26,36 @@
     <div class="scrollableTableContainer">
         <table class="hourlyBox">
             <tbody>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon"/>
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
-                <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr>
 
+                @foreach (var hour in Model.HourlyWeather)
+                {
+                    <tr>
+                        <td>
+                            <div class="listHourly">
+                                <div class="hourlyIcon">
+                                    <img src="https:@hour.ConditionIcon" alt="hourly icon" />
+                                </div>
+                                <div class="hourlyContent">
+                                    <p class="title">@hour.Time</p>
+                                    <p class="hourlySubtitle">@hour.Temperature @hour.ConditionText</p>
+                                </div>
+                            </div>
+                        </td>
+                    </tr>
+                }
+@*                 <tr>
+                    <td>
+                        <div class="listHourly">
+                            <div class="hourlyIcon">
+                                <img src="https:@Model.Icon" alt="hourly icon" />
+                            </div>
+                            <div class="hourlyContent">
+                                <p class="title">Time</p>
+                                <p class="hourlySubtitle">Temp</p>
+                            </div>
+                        </div>
+                    </td>
+                </tr> *@
         </table>
     </div>   
 </div>

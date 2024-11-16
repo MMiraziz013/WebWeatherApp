@@ -15,21 +15,58 @@ namespace WebWeatherApp.Controllers
         }
 
         [HttpGet]
-        public IActionResult Index()
+        public IActionResult Landing()
         {
-            var emptyWeather = new Weather
-            {
-                Temperature = string.Empty,
-                Icon = string.Empty,
-                Condition = string.Empty,
-                WindSpeed = string.Empty,
-                Humidity = string.Empty,
-                WindDirection = string.Empty,
-                Location = "Unknown",
-                Visibility = string.Empty,
-            };
+            return View();
+        }
 
-            return View(emptyWeather);
+        [HttpPost]
+        public IActionResult SetLocation (string location)
+        {
+            if(string.IsNullOrEmpty(location))
+            {
+                ModelState.AddModelError("location", "Location is required");
+                return View("Landing");
+            }
+
+            HttpContext.Session.SetString("Location", location);
+
+            return RedirectToAction("Index");
+        }
+
+        [HttpGet]
+        public async Task<IActionResult> Index()
+        {
+            //var emptyWeather = new Weather
+            //{
+            //    Temperature = string.Empty,
+            //    Icon = string.Empty,
+            //    Condition = string.Empty,
+            //    WindSpeed = string.Empty,
+            //    Humidity = string.Empty,
+            //    WindDirection = string.Empty,
+            //    Location = "Unknown",
+            //    Visibility = string.Empty,
+            //};
+
+            var location = HttpContext.Session.GetString("Location");
+
+            // If no location is set in session, redirect to Landing
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                return RedirectToAction("Landing");
+            }
+
+            try
+            {
+                var weather = await _weatherService.GetWeatherWithHourlyAsync(location);
+                return View(weather); // Pass weather data to the main weather view
+            }
+            catch
+            {
+                ModelState.AddModelError(string.Empty, "Could not retrieve weather data. Please try again.");
+                return View(new Weather()); // Pass an empty model to avoid null reference errors
+            }
         }
 
         [HttpPost]
@@ -40,6 +77,9 @@ namespace WebWeatherApp.Controllers
                 ModelState.AddModelError("location", "Location is required");
                 return View("Index");
             }
+
+            // Update session with the new location
+            HttpContext.Session.SetString("Location", location);
 
             try
             {

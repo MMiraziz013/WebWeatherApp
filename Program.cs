@@ -8,6 +8,9 @@ builder.Services.AddControllersWithViews();
 // Register WeatherService with HttpClient
 builder.Services.AddHttpClient<WeatherService>();
 
+// Add session services
+builder.Services.AddSession();
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -22,10 +25,14 @@ app.UseStaticFiles();
 
 app.UseRouting();
 
+// Enable session middleware
+app.UseSession();
+
 app.UseAuthorization();
 
+// Set default route to WeatherController and Landing action
 app.MapControllerRoute(
     name: "default",
-    pattern: "{controller=Home}/{action=Index}/{id?}");
+    pattern: "{controller=Weather}/{action=Landing}/{id?}");
 
 app.Run();

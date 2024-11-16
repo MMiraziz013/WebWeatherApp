@@ -1,0 +1,16 @@
+﻿@{
+    ViewData["Title"] = "Set Location";
+}
+
+<div class="container mt-5">
+    <h2 class="text-center">Welcome to WebWeatherApp</h2>
+    <p class="text-center">Please enter your location to get started:</p>
+
+    <form asp-action="SetLocation" method="post" class="mt-4">
+        <div class="form-group">
+            <label for="location">Location</label>
+            <input type="text" name="location" id="location" class="form-control" placeholder="Enter your city" required>
+        </div>
+        <button type="submit" class="btn btn-primary mt-3">Submit</button>
+    </form>
+</div>
