@@ -43,8 +43,8 @@ namespace WebWeatherApp.Controllers
 
             try
             {
-                var weather = await _weatherService.GetWeatherAsync(location);
-                return View("Index", weather); // Pass the updated weather data, including location
+                var weather = await _weatherService.GetWeatherWithHourlyAsync(location);
+                return View("Index", weather); // Pass updated weather data
             }
             catch (Exception)
             {
@@ -52,5 +52,6 @@ namespace WebWeatherApp.Controllers
                 return View("Index");
             }
         }
+
     }
 }

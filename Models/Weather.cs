@@ -10,5 +10,7 @@
         public string? Humidity { get; set; }
         public string? Location {  get; set; }
         public string? Visibility { get; set; }
+
+        public List<HourlyWeather>? HourlyWeather { get; set; }
     }
 }

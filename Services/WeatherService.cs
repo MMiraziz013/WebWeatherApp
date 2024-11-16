@@ -16,28 +16,38 @@ namespace WebWeatherApp.Services
         {
             _httpClient = httpClient;
         }
-        public async Task<Weather> GetWeatherAsync (string location)
+        public async Task<Weather> GetWeatherWithHourlyAsync(string location)
         {
             try
             {
-                string url = $"{BaseUrl}/current.json?key={ApiKey}&q={location}&aqi=no";
+                string url = $"{BaseUrl}/forecast.json?key={ApiKey}&q={location}&days=1&aqi=no&alerts=no";
 
                 HttpResponseMessage response = await _httpClient.GetAsync(url);
 
                 if (response.IsSuccessStatusCode)
                 {
-                    var jsonResponse = await response.Content.ReadAsStringAsync ();
-                    var weatherData = JsonSerializer.Deserialize<WeatherApiResponse> (jsonResponse, new JsonSerializerOptions
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    var weatherData = JsonSerializer.Deserialize<WeatherApiResponse>(jsonResponse, new JsonSerializerOptions
                     {
                         PropertyNameCaseInsensitive = true,
                     });
 
-                    if (weatherData == null || weatherData.Current == null)
+                    if (weatherData == null || weatherData.Current == null || weatherData.Forecast == null)
                     {
-                        throw new InvalidOperationException("Invalid response due to Weather API.");
+                        throw new InvalidOperationException("Invalid response from Weather API.");
                     }
 
-                    // EDIT THE WEATHER CONTROLLER, AND THEN FIX THIS PART.
+                    // Map hourly data to a simplified model
+                    var hourlyData = weatherData.Forecast.Forecastday
+                        .FirstOrDefault()?
+                        .Hour.Select(hour => new HourlyWeather
+                        {
+                            Time = hour.Time,
+                            Temperature = $"{hour.TempC}°C",
+                            ConditionText = hour.Condition.Text,
+                            ConditionIcon = hour.Condition.Icon
+                        }).ToList();
+
                     var weather = new Weather
                     {
                         Temperature = $"{weatherData.Current.TempC}°C",
@@ -48,19 +58,21 @@ namespace WebWeatherApp.Services
                         WindDirection = weatherData.Current.WindDir,
                         Visibility = $"{weatherData.Current.Visibility} km",
                         Location = weatherData.Location.Name,
+                        HourlyWeather = hourlyData,
                     };
+
                     return weather;
                 }
                 else
                 {
                     throw new HttpRequestException($"Request failed with status code {response.StatusCode}");
                 }
-
             }
             catch (Exception ex)
             {
-                throw new ApplicationException("An error occured whuile fetching the weather data", ex);
+                throw new ApplicationException("An error occurred while fetching the weather data", ex);
             }
         }
+
     }
 }

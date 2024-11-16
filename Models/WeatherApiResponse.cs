@@ -6,6 +6,8 @@ namespace WebWeatherApp.Models
     {
         public Location Location { get; set; }
         public CurrentWeather Current {  get; set; }
+
+        public Forecast Forecast { get; set; }
     }
 
     public class CurrentWeather
@@ -37,5 +39,25 @@ namespace WebWeatherApp.Models
     public class Location
     {
         public string Name { get; set; }
+    }
+    public class Forecast
+    {
+        public List<ForecastDay> Forecastday { get; set; }
+    }
+
+    public class ForecastDay
+    {
+        public List<Hour> Hour { get; set; }
+    }
+
+    public class Hour
+    {
+        [JsonPropertyName("time")]
+        public string Time { get; set; }
+
+        [JsonPropertyName("temp_c")]
+        public double TempC { get; set; }
+
+        public Condition Condition { get; set; }
     }
 }
