@@ -4,7 +4,7 @@
     flex-direction:column;
     justify-content:center;
     align-items:center;
-    width: 220px !important; /* Width of the sidebar */
+    width: 240px !important; /* Width of the sidebar */
     position: fixed;
     top: 56px; /* Height of the navbar */
     bottom: 0; /* Sticks to the bottom */
@@ -45,7 +45,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    width: 220px !important; /* Width of the sidebar */
+    width: 240px !important; /* Width of the sidebar */
     position: fixed;
     right:0;
     top: 56px; /* Height of the navbar */
@@ -79,8 +79,8 @@
 .hourlyBox {
     margin-left: auto;
     margin-right: auto;
-    width: 90vw;
-    max-width: 220px; /* Maximum width to prevent it from stretching too wide */
+    width: 100vw;
+    max-width: 240px; /* Maximum width to prevent it from stretching too wide */
 }
 
 .listHourly {
@@ -91,8 +91,7 @@
     align-items: center;
     margin-bottom: 10px;
     border: 1px, solid !important;
-    border-color: blue !important;
-    border-radius:5px;
+    border-radius: 10px;
     background-color:white;
     /*border: 1px, solid;*/
 }
@@ -119,9 +118,16 @@
     z-index: 1; /* Ensures the text and buttons appear above the overlay */
 }
 
+.hourlyTitle {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 0;
+    color: black !important;
+}
+
 .hourlySubtitle {
     font-size: 20px;
-    color: black;
+    color: black !important;
 }
 
 .locationForm {
@@ -162,7 +168,7 @@
 }
 
 .mainWeather {
-    background-image: url(../media/rain.jpg);
+    background-image: url(../media/sunny.jpg);
     background-size: cover;
     background-position: center;
     border-radius: 15px;

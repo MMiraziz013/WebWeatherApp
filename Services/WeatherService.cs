@@ -3,6 +3,7 @@ using System.Net.Http;
 using System.Threading.Tasks;
 using System.Text.Json;
 using WebWeatherApp.Models;
+using System.Collections.Generic;
 
 namespace WebWeatherApp.Services
 {
@@ -36,7 +37,7 @@ namespace WebWeatherApp.Services
                     {
                         throw new InvalidOperationException("Invalid response from Weather API.");
                     }
-
+                    
                     // Map hourly data to a simplified model
                     var hourlyData = weatherData.Forecast.Forecastday
                         .FirstOrDefault()?
