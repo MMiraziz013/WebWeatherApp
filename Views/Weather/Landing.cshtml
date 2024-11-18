@@ -1,16 +1,19 @@
 ﻿@{
     ViewData["Title"] = "Set Location";
 }
+<link rel="stylesheet" href="~/css/setLocation.css">
 
 <div class="container mt-5">
-    <h2 class="text-center">Welcome to WebWeatherApp</h2>
-    <p class="text-center">Please enter your location to get started:</p>
+    <h2 class="text-center fade-in">Welcome to WebWeatherApp</h2>
+    <p class="text-center fade-in" style="animation-delay: 0.5s;">Please enter your location to get started:</p>
 
     <form asp-action="SetLocation" method="post" class="mt-4">
-        <div class="form-group">
+        <div class="form-group" style="width:50% !important; margin-left:auto !important; margin-right:auto !important;">
             <label for="location">Location</label>
-            <input type="text" name="location" id="location" class="form-control" placeholder="Enter your city" required>
+            <input type="text" name="location" id="location" class="form-control" placeholder="Enter your city" required">
         </div>
-        <button type="submit" class="btn btn-primary mt-3" style="margin-left:auto !important; margin-right:auto !important">Submit</button>
+        <div class="landingButton">
+            <button type="submit" class="btn btn-primary mt-3" style="margin-left:auto !important; margin-right:auto !important">Confirm</button>
+        </div>
     </form>
 </div>

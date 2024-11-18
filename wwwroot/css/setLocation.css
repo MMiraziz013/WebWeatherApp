@@ -1,0 +1,23 @@
+﻿.fade-in {
+    opacity: 0;
+    transform: translateY(20px);
+    animation: fadeInAnimation 1.5s ease-in-out forwards;
+}
+
+@keyframes fadeInAnimation {
+    0% {
+        opacity: 0;
+        transform: translateY(20px);
+    }
+
+    100% {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+.landingButton {
+    margin-left:auto !important; 
+    margin-right:auto !important;
+    text-align:center;
+}
