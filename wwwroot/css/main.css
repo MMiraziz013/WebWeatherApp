@@ -10,7 +10,7 @@
     bottom: 0; /* Sticks to the bottom */
     height: calc(100vh - 56px - 50px); /* Adjust height minus navbar and footer */
     overflow-y: auto;
-    background-color: rgba(26, 188, 156, 1); /* Black */
+    background-color: mintcream !important; /*rgba(26, 188, 156, 1);*/ /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     border-radius: 5px;
 }
@@ -47,12 +47,12 @@
     align-items: center;
     width: 240px !important; /* Width of the sidebar */
     position: fixed;
-    right:0;
+    right: 0;
     top: 56px; /* Height of the navbar */
     bottom: 0; /* Sticks to the bottom */
     height: calc(100vh - 56px - 50px); /* Adjust height minus navbar and footer */
     overflow-y: auto;
-    background-color: rgba(26, 188, 156, 1); /* Black */
+    background-color: mintcream !important; /*rgba(26, 188, 156, 1);*/
     overflow-x: hidden; /* Disable horizontal scroll */
     border-radius: 5px;
 }
