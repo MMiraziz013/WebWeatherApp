@@ -40,6 +40,20 @@
     gap: 15px; /* Space between links */
 }
 
+.appLogoBox {
+    margin-left: auto;
+    margin-right:auto;
+    align-items:center;
+    width: 150px;
+    height:150px;
+}
+
+.appLogo {
+    
+    max-height: 100%;
+    object-fit: cover;
+}
+
 .rightSidenav {
     display: flex;
     flex-direction: column;
