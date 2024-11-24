@@ -10,7 +10,7 @@
     bottom: 0; /* Sticks to the bottom */
     height: calc(100vh - 56px - 50px); /* Adjust height minus navbar and footer */
     overflow-y: auto;
-    background-color: mintcream !important; /*rgba(26, 188, 156, 1);*/ /* Black */
+    background-color: midnightblue !important; /*rgba(26, 188, 156, 1);*/ /* Black */
     overflow-x: hidden; /* Disable horizontal scroll */
     border-radius: 5px;
 }
@@ -52,7 +52,7 @@
     bottom: 0; /* Sticks to the bottom */
     height: calc(100vh - 56px - 50px); /* Adjust height minus navbar and footer */
     overflow-y: auto;
-    background-color: mintcream !important; /*rgba(26, 188, 156, 1);*/
+    background-color: midnightblue !important; /*rgba(26, 188, 156, 1);*/
     overflow-x: hidden; /* Disable horizontal scroll */
     border-radius: 5px;
 }
@@ -168,7 +168,7 @@
 }
 
 .mainWeather {
-    background-image: url(../media/sunny.jpg);
+    background-image: url(../media/rain.jpg);
     background-size: cover;
     background-position: center;
     border-radius: 15px;
