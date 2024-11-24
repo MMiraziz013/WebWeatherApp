@@ -2,6 +2,14 @@
 
 @{
     ViewData["Title"] = "Today's Weather";
+
+    DateTime currentDate = DateTime.Now;
+
+    // Get the day of the week as an integer (0 = Sunday, 1 = Monday, ...)
+    int dayOfWeekNumber = (int)currentDate.DayOfWeek;
+
+    // Get the day of the week as a string
+    string dayOfWeekString = currentDate.DayOfWeek.ToString();
 }
 
 <div class="sidenav">
@@ -26,7 +34,6 @@
     <div class="scrollableTableContainer">
         <table class="hourlyBox">
             <tbody>
-
                 @foreach (var hour in Model.HourlyWeather)
                 {
                     <tr>
@@ -43,19 +50,6 @@
                         </td>
                     </tr>
                 }
-@*                 <tr>
-                    <td>
-                        <div class="listHourly">
-                            <div class="hourlyIcon">
-                                <img src="https:@Model.Icon" alt="hourly icon" />
-                            </div>
-                            <div class="hourlyContent">
-                                <p class="title">Time</p>
-                                <p class="hourlySubtitle">Temp</p>
-                            </div>
-                        </div>
-                    </td>
-                </tr> *@
         </table>
     </div>   
 </div>
@@ -67,7 +61,7 @@
                 <div class="mainWeather">
                     <div class="shadow">
                         <div class="content">
-                            <h1>@Model.Temperature<img src="https:@Model.Icon" class="mainIcon" /></h1>
+                            <h1> @dayOfWeekString @Model.Temperature<img src="https:@Model.Icon" class="mainIcon" /></h1>
                             <h5 style="color:white">Today's weather: @Model.Condition </h5>
                             <h5 style="color:white">@Model.Location</h5>
                         </div>
