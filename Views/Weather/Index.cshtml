@@ -1,5 +1,6 @@
 ﻿@model WebWeatherApp.Models.Weather
 
+
 @{
     ViewData["Title"] = "Today's Weather";
 
@@ -54,15 +55,19 @@
             <tbody>
                 @foreach (var hour in Model.HourlyWeather)
                 {
-                    <tr>
+                    // Check if the current hour matches the hour's time
+                    var isCurrentHour = hour.Time.EndsWith(Model.CurrentHour);
+                    var highlightClass = isCurrentHour ? "highlight" : "";
+
+                    <tr class="@highlightClass">
                         <td>
                             <div class="listHourly">
                                 <div class="hourlyIcon">
-                                    <img src="https:@hour.ConditionIcon" alt="hourly icon" />
+                                    <img src="@hour.ConditionIcon" alt="hourly icon" />
                                 </div>
                                 <div class="hourlyContent">
-                                    <p class="hourlyTitle">@hour.FormattedTime @hour.Temperature</p>
-                                    <p class="hourlySubtitle"> @hour.ConditionText</p>
+                                    <p class="hourlyTitle">@hour.Time @hour.Temperature</p>
+                                    <p class="hourlySubtitle">@hour.ConditionText</p>
                                 </div>
                             </div>
                         </td>
@@ -79,9 +84,9 @@
                 <div class="mainWeather">
                     <div class="shadow">
                         <div class="content">
-                            <h1> @dayOfWeekString @Model.Temperature<img src="https:@Model.Icon" class="mainIcon" /></h1>
+                            <h1>@Model.Temperature<img src="https:@Model.Icon" class="mainIcon" /></h1>
                             <h5 style="color:white">Today's weather: @Model.Condition </h5>
-                            <h5 style="color:white">@Model.Location</h5>
+                            <h5 style="color:white">@Model.Location, @dayOfWeekString</h5>
                         </div>
                     </div>
                 </div>
@@ -141,3 +146,15 @@
         </tr>
     </tbody>
 </table>
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const highlightedRow = document.querySelector("tr.highlight");
+        if (highlightedRow) {
+            highlightedRow.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    });
+</script>

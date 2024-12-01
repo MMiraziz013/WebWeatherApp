@@ -37,18 +37,6 @@ namespace WebWeatherApp.Controllers
         [HttpGet]
         public async Task<IActionResult> Index()
         {
-            //var emptyWeather = new Weather
-            //{
-            //    Temperature = string.Empty,
-            //    Icon = string.Empty,
-            //    Condition = string.Empty,
-            //    WindSpeed = string.Empty,
-            //    Humidity = string.Empty,
-            //    WindDirection = string.Empty,
-            //    Location = "Unknown",
-            //    Visibility = string.Empty,
-            //};
-
             var location = HttpContext.Session.GetString("Location");
 
             // If no location is set in session, redirect to Landing
@@ -60,6 +48,16 @@ namespace WebWeatherApp.Controllers
             try
             {
                 var weather = await _weatherService.GetWeatherWithHourlyAsync(location);
+
+                // Get the current hour
+                var currentTime = DateTime.Now;
+
+                // Add CurrentHour property to the Weather model
+                if (weather.HourlyWeather != null)
+                {
+                    weather.CurrentHour = currentTime.ToString("HH:mm"); // Add formatted time
+                }
+
                 return View(weather); // Pass weather data to the main weather view
             }
             catch
@@ -68,6 +66,7 @@ namespace WebWeatherApp.Controllers
                 return View(new Weather()); // Pass an empty model to avoid null reference errors
             }
         }
+
 
         [HttpPost]
         public async Task<IActionResult> GetWeather(string location)

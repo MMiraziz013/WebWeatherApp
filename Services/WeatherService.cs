@@ -37,18 +37,20 @@ namespace WebWeatherApp.Services
                     {
                         throw new InvalidOperationException("Invalid response from Weather API.");
                     }
-                    
+
                     // Map hourly data to a simplified model
                     var hourlyData = weatherData.Forecast.Forecastday
                         .FirstOrDefault()?
                         .Hour.Select(hour => new HourlyWeather
                         {
-                            Time = hour.Time,
+                            // Parse and format the time to HH:mm
+                            Time = DateTime.Parse(hour.Time).ToString("HH:mm"),
                             Temperature = $"{hour.TempC}°C",
                             ConditionText = hour.Condition.Text,
                             ConditionIcon = hour.Condition.Icon
                         }).ToList();
 
+                    var currentTime = DateTime.Now.ToString("HH:mm");
                     var weather = new Weather
                     {
                         Temperature = $"{weatherData.Current.TempC}°C",
@@ -60,7 +62,9 @@ namespace WebWeatherApp.Services
                         Visibility = $"{weatherData.Current.Visibility} km",
                         Location = weatherData.Location.Name,
                         HourlyWeather = hourlyData,
+                        CurrentHour = currentTime
                     };
+
 
                     return weather;
                 }
@@ -74,6 +78,7 @@ namespace WebWeatherApp.Services
                 throw new ApplicationException("An error occurred while fetching the weather data", ex);
             }
         }
+
 
     }
 }

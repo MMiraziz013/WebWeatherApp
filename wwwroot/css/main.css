@@ -97,6 +97,11 @@
     max-width: 240px; /* Maximum width to prevent it from stretching too wide */
 }
 
+tr.highlight {
+    background-color: #ffeb3b; /* Highlight color */
+    font-weight: bold; /* Optional bold font */
+}
+
 .listHourly {
     display: flex;
     width:95%;
