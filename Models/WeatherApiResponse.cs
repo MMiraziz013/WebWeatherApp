@@ -18,6 +18,9 @@ namespace WebWeatherApp.Models
         [JsonPropertyName("wind_kph")]
         public double WindKph { get; set; }
 
+        [JsonPropertyName("precip_in")]
+        public double Precipitation_mm { get; set; }
+
         [JsonPropertyName("humidity")]
         public int Humidity { get; set; }
 
@@ -28,6 +31,10 @@ namespace WebWeatherApp.Models
 
         [JsonPropertyName("vis_km")]
         public double Visibility { get; set; }
+
+        [JsonPropertyName("uv")]
+        public double UvIndex { get; set; }
+
     }
 
     public class Condition

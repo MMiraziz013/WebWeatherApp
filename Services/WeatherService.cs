@@ -62,7 +62,9 @@ namespace WebWeatherApp.Services
                         Visibility = $"{weatherData.Current.Visibility} km",
                         Location = weatherData.Location.Name,
                         HourlyWeather = hourlyData,
-                        CurrentHour = currentTime
+                        CurrentHour = currentTime,
+                        Precipitation = $"{weatherData.Current.Precipitation_mm}",
+                        Uv = $"{weatherData.Current.UvIndex}",
                     };
 
 

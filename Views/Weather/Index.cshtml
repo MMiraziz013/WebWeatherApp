@@ -20,8 +20,8 @@
                 <tr>
                     <td> *@
                         <div class="appLogoBox">
-                            <h5>Your Weather App</h5>
-                            <img class="appLogo" src="~/media/appLogo.png" />
+                            <h5 style="text-align:center;">Good Weather</h5>
+                            <img class="appLogo" src="~/media/appLogo.png"/>
                         </div>
 @*                     </td>
                 </tr>
@@ -45,7 +45,7 @@
         
         <a href="#" class="btn btn-primary">Tomorrow</a>
         <a href="#" class="btn btn-primary">Week</a>
-        <a href="#" class="btn btn-primary">Celcius</a>
+        <a href="#" class="btn btn-primary" style="margin-bottom: 5vw !important;">Celcius</a>
     </div>
 </div>
 
@@ -130,16 +130,16 @@
         <tr>
             <td style="border-bottom-left-radius:15px; border-bottom-right-radius: 15px">
                 <div class="list-item"> 
-                    <div class="icon"><img src="~/media/air-quality.png" alt="Wind Icon" /></div>
+                    <div class="icon"><img src="~/media/uvIcon.png" alt="Wind Icon" /></div>    
                     <div class="content">
-                        <p class="title">Air Quality</p>
-                        <p class="subtitle">Air Quality Formula</p>
+                        <p class="title">UV Index</p>
+                        <p class="subtitle">@Model.Uv</p>
                     </div>
 
-                    <div class="icon"><img src="~/media/humidityIcon.png" alt="Humidity Icon" /></div>
+                    <div class="icon"><img src="~/media/precipitationIcon.png" alt="Humidity Icon" /></div>
                     <div class="content">
-                        <p class="title">Blank</p>
-                        <p class="subtitle">Blank</p>
+                        <p class="title">Precipitation</p>
+                        <p class="subtitle">@Model.Precipitation mm</p>
                     </div>
                 </div>
             </td>

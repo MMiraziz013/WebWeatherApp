@@ -1,9 +1,9 @@
 ﻿/* The sidebar menu */
 .sidenav {
-    display:flex;
-    flex-direction:column;
-    justify-content:center;
-    align-items:center;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
     width: 240px !important; /* Width of the sidebar */
     position: fixed;
     top: 56px; /* Height of the navbar */
@@ -46,6 +46,7 @@
     align-items:center;
     width: 150px;
     height:150px;
+    margin-bottom: 5vw;
 }
 
 .appLogo {
