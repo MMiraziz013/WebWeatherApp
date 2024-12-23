@@ -65,6 +65,7 @@ namespace WebWeatherApp.Services
                         CurrentHour = currentTime,
                         Precipitation = $"{weatherData.Current.Precipitation_mm}",
                         Uv = $"{weatherData.Current.UvIndex}",
+                        DayOrNight = weatherData.Current.DayNight,
                     };
 
 

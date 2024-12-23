@@ -8,4 +8,4 @@
         public string? ConditionText { get; set; }
         public string? ConditionIcon { get; set; }
     }
-}
+} 

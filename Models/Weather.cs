@@ -13,6 +13,8 @@
         public string? Precipitation { get; set; }
         public string? Uv { get; set; }
 
+        public int? DayOrNight { get; set; }
+
         public List<HourlyWeather>? HourlyWeather { get; set; }
 
         public string? CurrentHour { get; set; }

@@ -35,6 +35,9 @@ namespace WebWeatherApp.Models
         [JsonPropertyName("uv")]
         public double UvIndex { get; set; }
 
+        [JsonPropertyName("is_day")]
+        public int DayNight { get; set; }
+
     }
 
     public class Condition

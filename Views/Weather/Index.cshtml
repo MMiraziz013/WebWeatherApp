@@ -11,38 +11,92 @@
 
     // Get the day of the week as a string
     string dayOfWeekString = currentDate.DayOfWeek.ToString();
-}
+
+    string picType = "";
+    if (Model.Condition.Contains("Rain") || Model.Condition.Contains("rain") || Model.Condition.Contains("drizzle") || Model.Condition.Contains("Drizzle"))
+    {
+        picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTB6YTZldGlodzQ0YnpzN3liajJqYTI4d2F0ejByMWV1ZDduaGZwYiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/t7Qb8655Z1VfBGr5XB/giphy.gif";
+    }
+
+    else if (Model.Condition.Contains("Cloud") || Model.Condition.Contains("cloud"))
+    {
+        if (Model.DayOrNight == 1)
+        {
+            picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExZTJ0aXFhZmZmZzVjajNiZ2NqOWlieWtkYnB5dHJkcGxnaGlkNDZnNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/lOkbL3MJnEtHi/giphy.gif";
+        }
+        else { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExem9nd3lvdnNtcWM5MDBxbm53Z2p5c20wcDk1MzFncnllOWV0ZzV5byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Cn46Wi1Fvh11S/giphy.gif"; }
+    }
+
+    else if (Model.Condition.Contains("Sunny") || Model.Condition.Contains("sunny"))
+    {
+        picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExamQ2emM2aGJyZGVwMGFodDhncGtxNHMzY3FnZWd0OWo2bGd0MHh5NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/igtTYUrBA77vW/giphy.gif";
+
+    }
+
+    else if (Model.Condition.Contains("Snow") || Model.Condition.Contains("snow"))
+    {
+        if (Model.DayOrNight == 1) { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExODlhMDZsOWZoajVwcjhpNGhkd2FhMW0zOGl0dzdrYTF2ajJwN295ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/12UCxsXdazBCso/giphy.gif"; }
+        else { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcGk4ZXF5MHNsczI4dThtZm03bWdubm13aWlneDk4emEwcjR6MXMxeiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/10dRS5TrkpqlOg/giphy.gif"; }
+    }
+
+    else if (Model.Condition.Contains("Overcast") || Model.Condition.Contains("overcast"))
+    {
+        if (Model.DayOrNight == 1) { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExbjZvY3J6ejRtYmh6NjY2aDdiOXBhYnZnc2Q0cnhwdTU3MnZ2em9kZSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/IZtRbZKQBCA3m/giphy.gif"; }
+        else { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExem9nd3lvdnNtcWM5MDBxbm53Z2p5c20wcDk1MzFncnllOWV0ZzV5byZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/Cn46Wi1Fvh11S/giphy.gif"; }
+    }
+
+    else if (Model.Condition.Contains("Mist") || Model.Condition.Contains("mist"))
+    {
+        if (Model.DayOrNight == 1) { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdW5qMHBmYjVmd29wM2oydTMyZzlvZ3YxZXpmZmhxYmwwYTg0MDUxNSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/uf3jumi0zzUv6/giphy.gif"; }
+        else { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHQ0c2xkcjNiMWVpaDJuejNkdDJlZ2p6ZGx3enByN3J5djE4bGVjeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vL2kKPiPHuMc96vs3N/giphy-downsized-large.gif"; }
+    }
+    else if (Model.Condition.Contains("Fog") || Model.Condition.Contains("fog"))
+    {
+        if (Model.DayOrNight == 1) { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExemZyd2lydTMxYnhnb2l6YXBpNmZ5eDByeDA5M3ozNWx4YXV6c2kzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xEjTM5COAKyNa/giphy.gif"; }
+        else {picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHQ0c2xkcjNiMWVpaDJuejNkdDJlZ2p6ZGx3enByN3J5djE4bGVjeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vL2kKPiPHuMc96vs3N/giphy-downsized-large.gif"; }
+    }
+
+    else if (Model.Condition.Contains("Storm") || Model.Condition.Contains("storm"))
+    {
+        if (Model.DayOrNight == 1) { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcmMyNWE2ZjNraGIwbjNjYTlvOHVheWgwY3NlZjVwdDF6ZjFpYThwZCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xTcnT45z6H5gxFYZZS/giphy.gif"; }
+        else { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExdWR6c3RuMGhwYzZwbHBnMHo5cnh3cDM4dWp3aHg0cXl2bGFsanYxNCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/NWFgmiGdF4rGo/giphy.gif"; }
+    }
+    else
+    {
+        if (Model.DayOrNight == 1) { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExamQ2emM2aGJyZGVwMGFodDhncGtxNHMzY3FnZWd0OWo2bGd0MHh5NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/igtTYUrBA77vW/giphy.gif"; }
+        else { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTJucmpiNGJqMXczdXA2bGJ3cGFubGJtZGxjMXV2eHJrbHdxd3N6ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LoNF8cgrrwYju5DxQL/giphy.gif"; }
+    }
+}   
+
+<style>
+    .mainWeather {
+        background-image: url(@picType);
+        background-size: cover;
+        background-position: center;
+        border-radius: 15px;
+        height: 50%;
+        overflow: hidden;
+    }
+    
+</style>
 
 <div class="sidenav">
     <div class="sidenavLinks">
-@*         <table style="padding-bottom: 100px;">
-            <tbody>
-                <tr>
-                    <td> *@
-                        <div class="appLogoBox">
-                            <h5 style="text-align:center;">Good Weather</h5>
-                            <img class="appLogo" src="~/media/appLogo.png"/>
-                        </div>
-@*                     </td>
-                </tr>
-                <tr>
-                    <td> *@
-                        <div class="locationForm">
-                            <form asp-action="GetWeather" method="post">
-                                <label class="form-label mt-4">Current Location</label>
-                                <div class="form-floating mb-3">
-                                    <!-- The placeholder is dynamically set based on @Model.Location -->
-                                    <input type="text" class="form-control" name="location" required id="location" placeholder="@Model.Location">
-                                    <label for="location">@Model.Location</label>
-                                </div>
-                            </form>
-                        </div>
-@*                     </td>
-                </tr>
-            </tbody>
-        </table> *@
-        
-        
+        <div class="appLogoBox">
+            <h5 style="text-align:center;">Good Weather</h5>
+            <img class="appLogo" src="~/media/appLogo.png"/>
+        </div>
+
+        <div class="locationForm">
+            <form asp-action="GetWeather" method="post">
+                <label class="form-label mt-4">Current Location</label>
+                <div class="form-floating mb-3">
+                    <!-- The placeholder is dynamically set based on @Model.Location -->
+                    <input type="text" class="form-control" name="location" required id="location" placeholder="@Model.Location">
+                    <label for="location">@Model.Location</label>
+                </div>
+            </form>
+        </div>
         <a href="#" class="btn btn-primary">Tomorrow</a>
         <a href="#" class="btn btn-primary">Week</a>
         <a href="#" class="btn btn-primary" style="margin-bottom: 5vw !important;">Celcius</a>
@@ -95,14 +149,14 @@
         <tr>
             <td>
                 <div class="list-item" style="margin-top:10px !important;">
-                    <div class="icon"><img src="~/media/compassIcon.png" alt="Compass Icon" /></div>
+                    <div class="icon"><img src="/media/compassAnimated.gif" alt="Compass Icon" /></div>
 
                     <div class="content">
                         <p class="title">Wind Direction</p>
                         <p class="subtitle">@Model.WindDirection</p>
                     </div>
 
-                    <div class="icon"><img src="~/media/humidityIcon.png" alt="Humidity Icon" /></div>
+                     <div class="icon"><img src="~/media/humidityAnimated.gif" alt="Humidity Icon" /></div>
 
                     <div class="content">
                         <p class="title">Humidity</p>
@@ -114,12 +168,12 @@
         <tr>
             <td>
                 <div class="list-item">
-                    <div class="icon"><img src="~/media/windspeedIcon.png" alt="Wind Speed Icon" /></div>
+                    <div class="icon"><img src="/media/windSpeedAnimated.gif" alt="Wind Speed Icon" /></div>
                     <div class="content">
                         <p class="title">Wind Speed</p>
                         <p class="subtitle">@Model.WindSpeed</p>
                     </div>
-                    <div class="icon"><img src="~/media/visibilityIcon.png" alt="Humidity Icon" /></div>
+                    <div class="icon"><img src="~/media/visibilityAnimated.gif" alt="Humidity Icon" /></div>
                     <div class="content">
                         <p class="title">Visibility</p>
                         <p class="subtitle">@Model.Visibility</p>
@@ -130,13 +184,13 @@
         <tr>
             <td style="border-bottom-left-radius:15px; border-bottom-right-radius: 15px">
                 <div class="list-item"> 
-                    <div class="icon"><img src="~/media/uvIcon.png" alt="Wind Icon" /></div>    
+                    <div class="icon"><img src="~/media/uvAnimated.gif" alt="Wind Icon" /></div>    
                     <div class="content">
                         <p class="title">UV Index</p>
                         <p class="subtitle">@Model.Uv</p>
                     </div>
 
-                    <div class="icon"><img src="~/media/precipitationIcon.png" alt="Humidity Icon" /></div>
+                    <div class="icon"><img src="~/media/precipitationAnimated.gif" alt="Humidity Icon" /></div>
                     <div class="content">
                         <p class="title">Precipitation</p>
                         <p class="subtitle">@Model.Precipitation mm</p>
