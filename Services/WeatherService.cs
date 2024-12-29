@@ -82,6 +82,72 @@ namespace WebWeatherApp.Services
             }
         }
 
+        public async Task<Weather> GetWeatherForTomorrow(string location)
+        {
+            try
+            {
+                string url = $"{BaseUrl}/forecast.json?key={ApiKey}&q={location}&days=2&aqi=no&alerts=no";
+                HttpResponseMessage response = await _httpClient.GetAsync(url);
+
+                if (response.IsSuccessStatusCode)
+                {
+                    var jsonResponse = await response.Content.ReadAsStringAsync();
+                    var weatherData = JsonSerializer.Deserialize<WeatherApiResponse>(jsonResponse, new JsonSerializerOptions
+                    {
+                        PropertyNameCaseInsensitive = true,
+                    });
+
+                    if (weatherData == null || weatherData.Forecast == null || weatherData.Forecast.Forecastday.Count < 2)
+                    {
+                        throw new InvalidOperationException("Invalid response from Weather API.");
+                    }
+
+                    var tomorrowForecast = weatherData.Forecast.Forecastday[1];
+
+                    var hourlyData = weatherData.Forecast.Forecastday
+                        .FirstOrDefault()?
+                        .Hour.Select(hour => new HourlyWeather
+                        {
+                            // Parse and format the time to HH:mm
+                            Time = DateTime.Parse(hour.Time).ToString("HH:mm"),
+                            Temperature = $"{hour.TempC}°C",
+                            ConditionText = hour.Condition.Text,
+                            ConditionIcon = hour.Condition.Icon
+                        }).ToList();
+
+                    var weather = new Weather
+                    {
+                        Location = weatherData.Location.Name,
+                        Date = tomorrowForecast.Date,
+                        MaxTemperature = $"{tomorrowForecast.Day.MaxTempC}°C",
+                        MinTemperature = $"{tomorrowForecast.Day.MinTempC}°C",
+                        AvgTemperature = $"{tomorrowForecast.Day.AvgTempC}°C",
+                        MaxWindSpeed = $"{tomorrowForecast.Day.MaxWindKph} kph",
+                        Precipitation = $"{tomorrowForecast.Day.TotalPrecipMm} mm",
+                        AvgHumidity = $"{tomorrowForecast.Day.AvgHumidity}%",
+                        ChanceOfRain = $"{tomorrowForecast.Day.DailyChanceOfRain}%",
+                        Sunrise = $"{tomorrowForecast.Astro.Sunrise}",
+                        Sunset = $"{tomorrowForecast.Astro.Sunset}",
+                        AverageVisibility = $"{tomorrowForecast.Day.AvgVisKm}",
+                        ChanceOfSnow = $"{tomorrowForecast.Day.DailyChanceOfSnow}%",
+                        Condition = tomorrowForecast.Day.Condition.Text,
+                        Icon = tomorrowForecast.Day.Condition.Icon,
+                        Uv = $"{tomorrowForecast.Day.Uv}",
+                        HourlyWeather = hourlyData,
+                    };
+
+                    return weather;
+                }
+                else
+                {
+                    throw new HttpRequestException($"Request failed with status code {response.StatusCode}");
+                }
+            }
+            catch (Exception ex)
+            {
+                throw new ApplicationException("An error occurred while fetching the weather data", ex);
+            }
+        }
 
     }
 }

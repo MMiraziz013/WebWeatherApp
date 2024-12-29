@@ -92,5 +92,29 @@ namespace WebWeatherApp.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetTomorrowWeather(string location)
+        {
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                ModelState.AddModelError("location", "Location is required");
+                return View("Index");
+            }
+
+            HttpContext.Session.SetString("Location", location);
+
+            try
+            {
+                var weather = await _weatherService.GetWeatherForTomorrow(location);
+                return View("Tomorrow", weather);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Could not retrieve weather data. Please try again.");
+                return View("Index");
+            }
+        }
+
+
     }
 }

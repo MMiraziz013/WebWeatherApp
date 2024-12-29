@@ -2,15 +2,18 @@
 
 
 @{
-    ViewData["Title"] = "Today's Weather";
+    ViewData["Title"] = "Tomorrow's Weather";
 
     DateTime currentDate = DateTime.Now;
 
-    // Get the day of the week as an integer (0 = Sunday, 1 = Monday, ...)
-    int dayOfWeekNumber = (int)currentDate.DayOfWeek;
+    // Get tomorrow's date
+    DateTime tomorrowDate = currentDate.AddDays(1);
 
-    // Get the day of the week as a string
-    string dayOfWeekString = currentDate.DayOfWeek.ToString();
+    // Get the day of the week for tomorrow as an integer (0 = Sunday, 1 = Monday, ...)
+    int dayOfWeekNumberTomorrow = (int)tomorrowDate.DayOfWeek;
+
+    // Get the day of the week for tomorrow as a string
+    string dayOfWeekStringTomorrow = tomorrowDate.DayOfWeek.ToString();
 
     string picType = "";
     if (Model.Condition.Contains("Rain") || Model.Condition.Contains("rain") || Model.Condition.Contains("drizzle") || Model.Condition.Contains("Drizzle"))
@@ -53,7 +56,7 @@
     else if (Model.Condition.Contains("Fog") || Model.Condition.Contains("fog"))
     {
         if (Model.DayOrNight == 1) { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExemZyd2lydTMxYnhnb2l6YXBpNmZ5eDByeDA5M3ozNWx4YXV6c2kzaSZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/xEjTM5COAKyNa/giphy.gif"; }
-        else {picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHQ0c2xkcjNiMWVpaDJuejNkdDJlZ2p6ZGx3enByN3J5djE4bGVjeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vL2kKPiPHuMc96vs3N/giphy-downsized-large.gif"; }
+        else { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExcHQ0c2xkcjNiMWVpaDJuejNkdDJlZ2p6ZGx3enByN3J5djE4bGVjeCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/vL2kKPiPHuMc96vs3N/giphy-downsized-large.gif"; }
     }
 
     else if (Model.Condition.Contains("Storm") || Model.Condition.Contains("storm"))
@@ -66,7 +69,7 @@
         if (Model.DayOrNight == 1) { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExamQ2emM2aGJyZGVwMGFodDhncGtxNHMzY3FnZWd0OWo2bGd0MHh5NiZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/igtTYUrBA77vW/giphy.gif"; }
         else { picType = "https://i.giphy.com/media/v1.Y2lkPTc5MGI3NjExMTJucmpiNGJqMXczdXA2bGJ3cGFubGJtZGxjMXV2eHJrbHdxd3N6ciZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/LoNF8cgrrwYju5DxQL/giphy.gif"; }
     }
-}   
+}
 
 <style>
     .mainWeather {
@@ -77,18 +80,17 @@
         height: 50%;
         overflow: hidden;
     }
-    
 </style>
 
 <div class="sidenav">
     <div class="sidenavLinks">
         <div class="appLogoBox">
             <h5 style="text-align:center;">Good Weather</h5>
-            <img class="appLogo" src="~/media/appLogo.png"/>
+            <img class="appLogo" src="~/media/appLogo.png" />
         </div>
 
         <div class="locationForm">
-            <form asp-action="GetWeather" method="post">
+            <form asp-action="GetTomorrowWeather" method="post">
                 <label class="form-label mt-4">Current Location</label>
                 <div class="form-floating mb-3">
                     <!-- The placeholder is dynamically set based on @Model.Location -->
@@ -97,9 +99,9 @@
                 </div>
             </form>
         </div>
-        <form asp-action="GetTomorrowWeather" method="post" style="margin-left: auto; margin-right: auto;">
+        <form asp-action="GetWeather" method="post" style="margin-left: auto; margin-right: auto;">
             <input type="hidden" name="location" value="@Model.Location" />
-            <button type="submit" class="btn btn-primary" style="width:216px; height: 67px; font-weight: bold; color: black;">Tomorrow</button>
+            <button type="submit" class="btn btn-secondary" style="width:216px; height: 67px; font-weight: bold; color: black;">Today</button>
         </form>
         <form asp-action="GetTomorrowWeather" method="post" style="margin-left: auto; margin-right: auto;">
             <input type="hidden" name="location" value="@Model.Location" />
@@ -114,11 +116,11 @@
             <tbody>
                 @foreach (var hour in Model.HourlyWeather)
                 {
-                    // Check if the current hour matches the hour's time
-                    var isCurrentHour = hour.Time.EndsWith(Model.CurrentHour);
-                    var highlightClass = isCurrentHour ? "highlight" : "";
+                     @* // Check if the current hour matches the hour's time
+                     var isCurrentHour = hour.Time.EndsWith(Model.CurrentHour);
+                     var highlightClass = isCurrentHour ? "highlight" : ""; *@
 
-                    <tr class="@highlightClass">
+                    <tr>
                         <td>
                             <div class="listHourly">
                                 <div class="hourlyIcon">
@@ -133,7 +135,7 @@
                     </tr>
                 }
         </table>
-    </div>   
+    </div>
 </div>
 
 <table class="WeatherBox">
@@ -143,9 +145,9 @@
                 <div class="mainWeather">
                     <div class="shadow">
                         <div class="content">
-                            <h1>@Model.Temperature<img src="https:@Model.Icon" class="mainIcon" /></h1>
-                            <h5 style="color:white">Today's weather: @Model.Condition </h5>
-                            <h5 style="color:white">@Model.Location, @dayOfWeekString</h5>
+                            <h1 id="tomorrow">@Model.MinTemperature ~ @Model.MaxTemperature<img src="https:@Model.Icon" class="mainIcon" /></h1>
+                            <h5 style="color:white">Tomorrow's weather: @Model.Condition </h5>
+                            <h5 style="color:white">@Model.Location, @dayOfWeekStringTomorrow</h5>
                         </div>
                     </div>
                 </div>
@@ -154,18 +156,18 @@
         <tr>
             <td>
                 <div class="list-item" style="margin-top:10px !important;">
-                    <div class="icon"><img src="/media/compassAnimated.gif" alt="Compass Icon" /></div>
+                    <div class="icon"><img src="/media/sunriseAnimated.gif" alt="Sunrise Icon" /></div>
 
                     <div class="content">
-                        <p class="title">Wind Direction</p>
-                        <p class="subtitle">@Model.WindDirection</p>
+                        <p class="title">Sunrise</p>
+                        <p class="subtitle">@Model.Sunrise</p>
                     </div>
 
-                     <div class="icon"><img src="~/media/humidityAnimated.gif" alt="Humidity Icon" /></div>
+                    <div class="icon"><img src="~/media/sunsetAnimated.gif" alt="Sunset Icon" /></div>
 
                     <div class="content">
-                        <p class="title">Humidity</p>
-                        <p class="subtitle">@Model.Humidity</p>
+                        <p class="title">Sunset</p>
+                        <p class="subtitle">@Model.Sunset</p>
                     </div>
                 </div>
             </td>
@@ -175,30 +177,31 @@
                 <div class="list-item">
                     <div class="icon"><img src="/media/windSpeedAnimated.gif" alt="Wind Speed Icon" /></div>
                     <div class="content">
-                        <p class="title">Wind Speed</p>
-                        <p class="subtitle">@Model.WindSpeed</p>
+                        <p class="title">Maximum Wind Speed</p>
+                        <p class="subtitle">@Model.MaxWindSpeed</p>
                     </div>
-                    <div class="icon"><img src="~/media/visibilityAnimated.gif" alt="Humidity Icon" /></div>
+                    <div class="icon"><img src="~/media/visibilityAnimated.gif" alt="Visibility Icon" /></div>
                     <div class="content">
-                        <p class="title">Visibility</p>
-                        <p class="subtitle">@Model.Visibility</p>
+                        <p class="title">Expected Visibility</p>
+                        <p class="subtitle">@Model.AverageVisibility</p>
                     </div>
                 </div>
             </td>
         </tr>
         <tr>
             <td style="border-bottom-left-radius:15px; border-bottom-right-radius: 15px">
-                <div class="list-item"> 
-                    <div class="icon"><img src="~/media/uvAnimated.gif" alt="Wind Icon" /></div>    
+                <div class="list-item">
+                    <div class="icon"><img src="~/media/humidityAnimated.gif" alt="Humidity Icon" /></div>
+
                     <div class="content">
-                        <p class="title">UV Index</p>
-                        <p class="subtitle">@Model.Uv</p>
+                        <p class="title">Average Humidity</p>
+                        <p class="subtitle">@Model.AvgHumidity</p>
                     </div>
 
-                    <div class="icon"><img src="~/media/precipitationAnimated.gif" alt="Humidity Icon" /></div>
+                    <div class="icon"><img src="~/media/precipitationAnimated.gif" alt="Precipitation Icon" /></div>
                     <div class="content">
                         <p class="title">Precipitation</p>
-                        <p class="subtitle">@Model.Precipitation mm</p>
+                        <p class="subtitle">@Model.Precipitation</p>
                     </div>
                 </div>
             </td>

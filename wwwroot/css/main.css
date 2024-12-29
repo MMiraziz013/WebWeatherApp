@@ -209,6 +209,10 @@ tr.highlight {
     z-index: 1; /* Ensures the text and buttons appear above the overlay */
 }
 
+.content #tomorrow {
+    width: 500px;
+}
+
 .mainWeather h1 {
     display: flex;
     align-items: center;
