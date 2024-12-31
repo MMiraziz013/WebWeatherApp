@@ -13,7 +13,7 @@ namespace WebWeatherApp.Controllers
         {
             _weatherService = weatherService;
         }
-
+        
         [HttpGet]
         public IActionResult Landing()
         {
@@ -67,7 +67,6 @@ namespace WebWeatherApp.Controllers
             }
         }
 
-
         [HttpPost]
         public async Task<IActionResult> GetWeather(string location)
         {
@@ -115,6 +114,27 @@ namespace WebWeatherApp.Controllers
             }
         }
 
+        [HttpPost]
+        public async Task<IActionResult> GetWeeksWeather(string location)
+        {
+            if (string.IsNullOrWhiteSpace(location))
+            {
+                ModelState.AddModelError("location", "Location is required");
+                return View("Index");
+            }
 
+            HttpContext.Session.SetString("Location", location);
+
+            try
+            {
+                var weeklyWeather = await _weatherService.GetWeatherForWeek(location);
+                return View("Week", weeklyWeather);
+            }
+            catch (Exception)
+            {
+                ModelState.AddModelError(string.Empty, "Could not retrieve weather data. Please try again.");
+                return View("Index");
+            }
+        }   
     }
 }

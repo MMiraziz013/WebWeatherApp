@@ -1,0 +1,148 @@
+﻿@model WebWeatherApp.Models.Weather
+@using WebWeatherApp.Services
+
+@{
+    ViewData["Title"] = "Week's Weather";
+
+    DateTime currentDate = DateTime.Now;
+
+    // Get tomorrow's date
+    DateTime tomorrowDate = currentDate.AddDays(1);
+
+    // Get the day of the week for tomorrow as an integer (0 = Sunday, 1 = Monday, ...)
+    int dayOfWeekNumberTomorrow = (int)tomorrowDate.DayOfWeek;
+
+    // Get the day of the week for tomorrow as a string
+    string dayOfWeekStringTomorrow = tomorrowDate.DayOfWeek.ToString();
+
+    List<string> picTypes = new List<string>();
+
+}
+
+<link rel="stylesheet" href="~/css/week.css">
+
+
+<div class="sidenav">
+    <div class="sidenavLinks">
+        <div class="appLogoBox">
+            <h5 style="text-align:center;">Good Weather</h5>
+            <img class="appLogo" src="~/media/appLogo.png" />
+        </div>
+
+        <div class="locationForm">
+            <form asp-action="GetTomorrowWeather" method="post">
+                <label class="form-label mt-4">Current Location</label>
+                <div class="form-floating mb-3">
+                    <!-- The placeholder is dynamically set based on @Model.Location -->
+                    <input type="text" class="form-control" name="location" required id="location" placeholder="@Model.Location">
+                    <label for="location">@Model.Location</label>
+                </div>
+            </form>
+        </div>
+        <form asp-action="GetWeather" method="post" style="margin-left: auto; margin-right: auto;">
+            <input type="hidden" name="location" value="@Model.Location" />
+            <button type="submit" class="btn btn-secondary" style="width:216px; height: 67px; font-weight: bold; color: black;">Today</button>
+        </form>
+        <form asp-action="GetTomorrowWeather" method="post" style="margin-left: auto; margin-right: auto;">
+            <input type="hidden" name="location" value="@Model.Location" />
+            <button type="submit" class="btn btn-primary" style="width:216px; height: 67px; font-weight: bold; color: black;">Tomorrow</button>
+        </form>
+    </div>
+</div>
+
+
+
+<div class="weather-container">
+    <table class="WeatherBox" id="week">
+        <tbody>
+            <tr>
+                @foreach (var day in Model.DailyWeather)
+                {
+                    <td style="border-radius: 15px; padding: 10px;">
+                        <div class="mainWeather" style="background-image:url('@WeatherImageHelper.GetWeatherGif(day.Condition)');">
+                            <div class="shadow">
+                                <div class="content">
+                                    <h1 id="tomorrow">
+                                        @day.MinTemperature ~ @day.MaxTemperature
+                                        <img src="https:@day.Icon" class="mainIcon" id="main" />
+                                    </h1>
+                                    <h5 style="color:white">@day.Condition</h5>
+                                    <h5 style="color:white">@Model.Location, @day.DayOfWeek</h5>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="list-item" style="margin-top: 10px;">
+                            <div class="icon">
+                                <img src="/media/sunriseAnimated.gif" alt="Sunrise Icon" />
+                            </div>
+                            <div class="content">
+                                <p class="title">Sunrise</p>
+                                <p class="subtitle">@day.Sunrise</p>
+                            </div>
+                        </div>
+
+                        <div class="list-item">
+                            <div class="icon" id="different">
+                                <img src="~/media/sunsetAnimated.gif" alt="Sunset Icon" />
+                            </div>
+                            <div class="content">
+                                <p class="title">Sunset</p>
+                                <p class="subtitle">@day.Sunset</p>
+                            </div>
+                        </div>
+
+                        <div class="list-item">
+                            <div class="icon">
+                                <img src="/media/windSpeedAnimated.gif" alt="Wind Speed Icon" />
+                            </div>
+                            <div class="content">
+                                <p class="title">Max Wind Speed</p>
+                                <p class="subtitle">@day.MaxWindSpeed</p>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="icon">
+                                <img src="~/media/humidityAnimated.gif" alt="Humidity Icon" />
+                            </div>
+                            <div class="content">
+                                <p class="title">Average Humidity</p>
+                                <p class="subtitle">@day.AvgHumidity</p>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="icon">
+                                <img src="~/media/precipitationAnimated.gif" alt="Visibility Icon" />
+                            </div>
+                            <div class="content">
+                                <p class="title">Chance of Rain</p>
+                                <p class="subtitle">@day.ChanceOfRain%</p>
+                            </div>
+                        </div>
+                        <div class="list-item">
+                            <div class="icon">
+                                <img src="~/media/snowAnimated.gif" alt="Precipitation Icon" />
+                            </div>
+                            <div class="content">
+                                <p class="title">Chance of Snow</p>
+                                <p class="subtitle">@day.ChanceOfSnow</p>
+                            </div>
+                        </div>
+                    </td>
+                }
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const highlightedRow = document.querySelector("tr.highlight");
+        if (highlightedRow) {
+            highlightedRow.scrollIntoView({
+                behavior: "smooth",
+                block: "center"
+            });
+        }
+    });
+</script>

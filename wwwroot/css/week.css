@@ -1,0 +1,124 @@
+﻿.weather-container {
+    margin-top:5% !important;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start; /* Align items at the top */
+    max-width: 1000px;
+    max-height: 65vh; /* Ensure container doesn't grow too tall */
+    overflow-y: hidden; /* Prevent vertical overflow */
+    overflow-x: hidden; /* Prevent horizontal overflow */
+    padding: 10px;
+    margin: auto;
+    background-color: #f0f0f0; /* Optional */
+    border-radius: 20px;
+}
+
+.WeatherBox {
+    width: 100%; /* Ensure it doesn't exceed the parent width */
+    max-height: 80vh !important;
+    max-width: 100%; /* Explicitly cap the width */
+    height: auto; /* Maintain content height dynamically */
+    margin: 0;
+    padding: 0;
+    background-color: white;
+    border-radius: 15px;
+    box-sizing: border-box; /* Include padding/borders in total width */
+    overflow: hidden; /* Prevent overflow from inner elements */
+    white-space: nowrap; /* Prevent text or child elements from wrapping */
+}
+
+
+
+
+.weather-container .WeatherBox {
+    transform: scale(0.8); /* Scale down to 80% */
+    transform-origin: center top; /* Scale relative to the top center */
+}
+
+#week .content,
+#week h1,
+#week h5,
+#week p {
+    font-size: 14px; /* Smaller font size */
+    line-height: 1.4; /* Adjust line spacing for compactness */
+    max-width:336px;
+}
+#week content {
+    width:150px !important;
+}
+
+#week td {
+    padding: 2px; /* Reduce padding */
+}
+
+#week .list-item {
+    margin-top: 2px !important; /* Smaller margin between items */
+}
+
+@media (max-width: 768px) {
+    .weather-container {
+        width: 90vw; /* Allow more width on smaller screens */
+        max-width: 500px;
+    }
+
+    .WeatherBox {
+        transform: scale(0.9); /* Slightly larger for readability */
+    }
+
+    #week .content,
+    #week h1,
+    #week h5,
+    #week p {
+        font-size: 12px; /* Smaller text for mobile */
+    }
+}
+
+@media screen and (max-width: 1550px) {
+    .weather-container {
+        display: flex;
+        justify-content: center;
+        align-items: flex-start; /* Align items at the top */
+        max-width: 900px;
+        max-height: 82.5vh; /* Ensure container doesn't grow too tall */
+        overflow-y: hidden; /* Prevent vertical overflow */
+        padding: 10px;
+        margin: auto;
+        background-color: #f0f0f0; /* Optional */
+        border-radius: 20px;
+        margin-top: 0 !important;
+    }
+
+    .WeatherBox {
+        width: 100%; /* Ensure it doesn't exceed the parent width */
+        max-height: 80vh !important;
+        max-width: 100%; /* Explicitly cap the width */
+        height: auto; /* Maintain content height dynamically */
+        margin: 0;
+        padding: 0;
+        background-color: white;
+        border-radius: 15px;
+        box-sizing: border-box; /* Include padding/borders in total width */
+        overflow: hidden; /* Prevent overflow from inner elements */
+    }
+
+    .mainWeather, .shadow {
+        max-width: 300px;
+        max-height: 204px;
+        height: 160px;
+    }
+}
+
+.list-item {
+    max-width: 350px !important;
+}
+
+.mainWeather, .shadow {
+    max-width: 400px;
+    max-height: 204px;
+    height: 160px;
+}
+
+#tomorrow {
+    padding-top: 0px;
+
+}

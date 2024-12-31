@@ -33,5 +33,22 @@ public class Weather
 
     public string? Sunrise { get; set; }
     public string? Sunset { get; set; }
+    public List<DailyWeather>? DailyWeather { get; set; }
 
+
+}
+public class DailyWeather
+{
+    public string? Date { get; set; }
+    public string? DayOfWeek { get; set; }
+    public string? MaxTemperature { get; set; }
+    public string? MinTemperature { get; set; }
+    public string? Condition { get; set; }
+    public string? Icon { get; set; }
+    public int ChanceOfRain { get; set; }
+    public int ChanceOfSnow { get; set; }
+    public string? Sunrise { get; set; }
+    public string? Sunset { get; set; }
+    public string? MaxWindSpeed { get; set; }
+    public string? AvgHumidity { get; set; }
 }
