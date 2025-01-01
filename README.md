@@ -62,7 +62,7 @@ The application also features dynamic updates, smooth animations, and an intuiti
 
 ## How It Works
 
-* On initial page load, the application fetches weather data for the default location (Tashkent).
+* On initial page load, the application requests the user to enter the location to check the weather.
 
 * Users can submit a new location through the location form, and the application updates the weather data dynamically.
 
